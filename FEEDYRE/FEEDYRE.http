@@ -1,0 +1,6 @@
+@FEEDYRE_HostAddress = http://localhost:8000
+
+GET {{FEEDYRE_HostAddress}}/api/home/
+Accept: application/json
+
+###
