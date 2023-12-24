@@ -1,4 +1,6 @@
+using FEEDYRE.Core.Abstractions.Interfaces;
 using FEEDYRE.Core.Data;
+using FEEDYRE.Core.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,7 +13,7 @@ var connectionString = builder.Configuration.GetConnectionString("Default");
 builder.Services.AddDbContext<DataContext>(opt => 
     opt.UseSqlServer(connectionString));
 
-
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 var app = builder.Build();
 

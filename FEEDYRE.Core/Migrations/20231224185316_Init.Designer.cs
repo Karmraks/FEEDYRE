@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FEEDYRE.Core.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20231222181802_Init")]
+    [Migration("20231224185316_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -30,6 +30,9 @@ namespace FEEDYRE.Core.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()

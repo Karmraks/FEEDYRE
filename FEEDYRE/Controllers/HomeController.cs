@@ -10,13 +10,7 @@ namespace FEEDYRE.Controllers
         [HttpGet]
         public IActionResult GetUsers()
         {
-            var users = new List<User>()
-            {
-                new User(){ Name = "Tarik" },
-                new User(){ Name = "WhoAmI" }
-            };
-
-            return Ok(users);
+            return Ok("HomePage is here");
         }
     }
 }
