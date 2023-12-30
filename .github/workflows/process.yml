@@ -42,18 +42,18 @@ jobs:
             file: ./FEEDYRE.Ng/Dockerfile
             push: true
             tags: karmraks/feedyre_ng
-  # deploy: 
-  #   runs-on: ubuntu-latest
-  #   needs: [build_main_api, build_ng]
-  #   steps: 
-  #     - name: Login via SSH and call docker-compose 
-  #       uses: appleboy/ssh-action@v0.1.3
-  #       with: 
-  #         host: 164.92.226.106
-  #         username: root
-  #         password: ${{ secrets.DIGITAL_OCEAN_DROPLET_PASSWORD }}
-  #         script: |
-  #          cd /home
-  #          docker-compose down
-  #          docker-compose pull
-  #          docker-compose up --detach
+  deploy: 
+    runs-on: ubuntu-latest
+    needs: [build_main_api, build_ng]
+    steps: 
+      - name: Login via SSH and call docker-compose 
+        uses: appleboy/ssh-action@v0.1.3
+        with: 
+          host: 167.99.136.88
+          username: root
+          password: ${{ secrets.DIGITAL_OCEAN_DROPLET_PASSWORD }}
+          script: |
+           cd /home
+           docker-compose down
+           docker-compose pull
+           docker-compose up --detach
