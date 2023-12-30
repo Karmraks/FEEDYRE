@@ -1,13 +1,18 @@
-import { Component, Injectable, OnInit } from '@angular/core';
-import { User } from '../models/user';
-import { UserService } from '../services/userservice';
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterOutlet } from '@angular/router';
+import { UserService } from './services/user.service';
+import { User } from './models/user';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { NgModule } from "@angular/core";
 
 @Component({
   selector: 'app-root',
+  standalone: true,
+  imports: [CommonModule, RouterOutlet, HttpClientModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.sass'
 })
-
 export class AppComponent implements OnInit{
   
   users : User[] = [];
