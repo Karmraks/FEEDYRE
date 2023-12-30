@@ -16,7 +16,7 @@ services:
     restart: always
   main_web: 
     container_name: main_web
-    image: feedyre_api
+    image: karmraks/feedyre_api
     ports: 
       - "8000:8080"
     networks:
@@ -24,9 +24,9 @@ services:
     restart: always
   frontend_ng: 
     container_name: frontend_ng
-    image: feedyre_ng
+    image: karmraks/feedyre_ng
     ports: 
-      - "9000:8080" 
+      - "80:8080" 
     networks:
     - "feedyre"
     restart: always 
