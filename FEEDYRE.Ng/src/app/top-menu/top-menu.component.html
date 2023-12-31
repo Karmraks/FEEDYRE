@@ -1,0 +1,15 @@
+<mat-toolbar>
+    <button mat-raised-button color="primary" [routerLink]="'/register'" class="toolbar-btn">Register</button> 
+    <button mat-raised-button color="primary" [routerLink]="'/login'" class="toolbar-btn">Login</button>
+    <button mat-raised-button color="primary"  class="toolbar-btn">Sign Out</button>
+    <span class="span-expander"></span>
+    <button mat-raised-button color="primary" class="toolbar-btn">Open Admin</button>
+</mat-toolbar>
+
+<!-- <mat-toolbar>
+    <button *ngIf="!isAdmin" mat-raised-button color="primary" [routerLink]="'/register'" class="toolbar-btn">Register</button> 
+    <button *ngIf="!isAdmin" mat-raised-button color="primary" [routerLink]="'/login'" class="toolbar-btn">Login</button>
+    <button *ngIf="isAdmin" mat-raised-button color="primary" (click)="onSignOut()" class="toolbar-btn">Sign Out</button>
+    <span class="span-expander"></span>
+    <button *ngIf="isAdmin" mat-raised-button color="primary" [routerLink]="'/admin'" class="toolbar-btn">Open Admin</button>
+</mat-toolbar> -->

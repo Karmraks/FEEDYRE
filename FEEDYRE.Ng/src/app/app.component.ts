@@ -1,20 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { UserService } from './services/user.service';
-import { User } from './models/user';
+import { UserService } from '../services/user.service';
+import { User } from '../models/user';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgModule } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
+import { TopMenuComponent } from "./top-menu/top-menu.component";
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [CommonModule, RouterOutlet, HttpClientModule, MatButtonModule],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+    selector: 'app-root',
+    standalone: true,
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.scss',
+    imports: [CommonModule, RouterOutlet, HttpClientModule, MatButtonModule, TopMenuComponent]
 })
 export class AppComponent{
+  title(title: any) {
+    throw new Error('Method not implemented.');
+  }
   
 
   //ALL USERS
