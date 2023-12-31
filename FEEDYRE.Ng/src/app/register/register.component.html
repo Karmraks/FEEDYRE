@@ -1,1 +1,30 @@
-<p>register works!</p>
+<form>
+    <mat-card class="col-sm-6">
+      <mat-card-header>
+        <mat-card-title> Register </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="row">
+          <div class="col-sm-6">
+            <mat-form-field>
+              <input
+                matInput
+                placeholder="Name"
+                type="text"
+                [(ngModel)]="name"
+                name="name"
+              />
+            </mat-form-field>
+          </div>
+        </div>
+      </mat-card-content>
+      <mat-card-footer>
+        <mat-card-subtitle>
+          <button mat-raised-button color="primary" (click)="onRegister()">
+            Register
+          </button>
+        </mat-card-subtitle>
+      </mat-card-footer>
+    </mat-card>
+  </form>
+  
