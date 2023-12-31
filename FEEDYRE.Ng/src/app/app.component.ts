@@ -11,7 +11,7 @@ import { NgModule } from "@angular/core";
   standalone: true,
   imports: [CommonModule, RouterOutlet, HttpClientModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.sass'
+  styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit{
   
