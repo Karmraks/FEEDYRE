@@ -4,6 +4,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from "@angular/material/card";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
+import { UserService } from '../../services/user.service';
+import { RegisterUser, User } from '../../models/user';
 
 @Component({
   selector: 'app-register',
@@ -14,9 +16,17 @@ import { MatInputModule } from "@angular/material/input";
 })
 export class RegisterComponent {
 
-  public name: string = '';
+  constructor(private userService: UserService) {}
+
+  public email: string = '';
+  public password: string = '';
 
   onRegister() {
-    console.log(this.name);
+    let user = new RegisterUser();
+    user.email = this.email;
+    user.password = this.password;
+    this.userService.register(user).subscribe(data => {
+      console.log("user registered")
+    });
   }
 }
