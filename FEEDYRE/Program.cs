@@ -1,3 +1,4 @@
+using System.Reflection;
 using FEEDYRE.Core.Abstractions.Interfaces;
 using FEEDYRE.Core.Data;
 using FEEDYRE.Core.Repositories;
@@ -14,6 +15,7 @@ builder.Services.AddDbContext<DataContext>(opt =>
     opt.UseSqlServer(connectionString));
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
 var app = builder.Build();
 
