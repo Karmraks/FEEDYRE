@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { User } from '../models/user';
+import { User, RegisterUser } from '../models/user';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -17,4 +17,8 @@ export class UserService {
     add(user: User) : Observable<any> {
         return this.client.post("/api/user", user);
     }
+
+    register(user: RegisterUser) : Observable<any> {
+      return this.client.post<RegisterUser>("/api/register", user);
+  }
 }

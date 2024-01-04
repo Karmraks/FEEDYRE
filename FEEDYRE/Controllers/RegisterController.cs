@@ -1,24 +1,29 @@
-﻿using AutoMapper;
-using FEEDYRE.Core.Abstractions.Interfaces;
+﻿using FEEDYRE.Core.Abstractions.Interfaces;
 using FEEDYRE.Core.Models;
 using FEEDYRE.Core.Repositories;
 using FEEDYRE.Web.Dtos;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
+using FEEDYRE.Core.Abstractions.Extensions;
 
 namespace FEEDYRE.Web.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class RegisterController(IUserRepository userRepository, IMapper mapper) : Controller
+    public class RegisterController(IUserRepository userRepository) : Controller
     {
 
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] UserDto user)
         {
-            var entity = mapper.Map<User>(user);
-            await userRepository.Create(entity);
+            var entity = user.ToEntity();
+            if (await userRepository.IsRegistered(entity))
+            {
+                return BadRequest(error: JsonSerializer.Serialize("User is already registered"));
+            }
 
-            return Created("", entity);
+            await userRepository.Create(entity);
+            return Created("", user);
         }
     }
 }
