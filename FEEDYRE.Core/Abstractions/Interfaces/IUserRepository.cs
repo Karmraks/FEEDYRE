@@ -11,5 +11,6 @@ namespace FEEDYRE.Core.Abstractions.Interfaces
     {
         Task<IEnumerable<User>> GetAll();
         Task Create(User user);
+        Task<bool> IsRegistered(User user);
     }
 }

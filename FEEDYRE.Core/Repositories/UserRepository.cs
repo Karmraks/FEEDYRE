@@ -19,6 +19,11 @@ namespace FEEDYRE.Core.Repositories
             await context.SaveChangesAsync();
         }
 
+        public async Task<bool> IsRegistered(User user)
+        {
+            return await context.Users.AnyAsync(u => u.Email == user.Email);
+        }
+
         public async Task<IEnumerable<User>> GetAll()
         {
             return await context.Users.ToListAsync();
