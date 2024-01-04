@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace FEEDYRE.Core.Models
 {
-    public class User
+    public class Role
     {
         [Key]
         public Guid Id { get; set; }
-        public string Email { get; set; } = null!;
-        public string Password { get; set; } = null!;
-        public List<UserRole> UserRoles { get; set; } = null!;
+
+        [MaxLength(100)] 
+        public string Name { get; set; } = null!;
     }
 }

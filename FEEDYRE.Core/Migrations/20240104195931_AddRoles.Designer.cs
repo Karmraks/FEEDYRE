@@ -4,6 +4,7 @@ using FEEDYRE.Core.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FEEDYRE.Core.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20240104195931_AddRoles")]
+    partial class AddRoles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,23 +39,6 @@ namespace FEEDYRE.Core.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Roles");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("550c9fb1-ba46-44ac-bc43-0e32cb1b80ad"),
-                            Name = "Admin"
-                        },
-                        new
-                        {
-                            Id = new Guid("8da6bd0d-6e3f-4912-a97a-e0c814ef5528"),
-                            Name = "Sensei"
-                        },
-                        new
-                        {
-                            Id = new Guid("da526b84-4281-4b90-a853-ce6fcc26163e"),
-                            Name = "Trainee"
-                        });
                 });
 
             modelBuilder.Entity("FEEDYRE.Core.Models.User", b =>
@@ -72,14 +58,6 @@ namespace FEEDYRE.Core.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("b31966e3-1d47-420c-b62f-366a3d950991"),
-                            Email = "admin",
-                            Password = "admin"
-                        });
                 });
 
             modelBuilder.Entity("FEEDYRE.Core.Models.UserRole", b =>
@@ -101,14 +79,6 @@ namespace FEEDYRE.Core.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("UserRoles");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("995656e9-3c9e-480d-9847-dbe058aea3ff"),
-                            RoleId = new Guid("550c9fb1-ba46-44ac-bc43-0e32cb1b80ad"),
-                            UserId = new Guid("b31966e3-1d47-420c-b62f-366a3d950991")
-                        });
                 });
 
             modelBuilder.Entity("FEEDYRE.Core.Models.UserRole", b =>
