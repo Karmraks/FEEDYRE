@@ -1,8 +1,11 @@
 using System.Reflection;
+using System.Text;
 using FEEDYRE.Core.Abstractions.Interfaces;
 using FEEDYRE.Core.Data;
 using FEEDYRE.Core.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +18,22 @@ builder.Services.AddDbContext<DataContext>(opt =>
     opt.UseSqlServer(connectionString));
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+
+var key = Encoding.ASCII.GetBytes(builder.Configuration["JwtSecret"]!);
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(x =>
+    {
+        x.RequireHttpsMetadata = false;
+        x.SaveToken = true;
+        x.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(key),
+            ValidateIssuer = false,
+            ValidateAudience = false
+        };
+    });
+builder.Services.AddAuthorization();
 
 var app = builder.Build();
 

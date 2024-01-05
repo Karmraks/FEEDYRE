@@ -9,6 +9,7 @@ namespace FEEDYRE.Core.Abstractions.Interfaces
 {
     public interface IUserRepository
     {
+        Task<User?> Get(User user);
         Task<IEnumerable<User>> GetAll();
         Task Create(User user);
         Task<bool> IsRegistered(User user);

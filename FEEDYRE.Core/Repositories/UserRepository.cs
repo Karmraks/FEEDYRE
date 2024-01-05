@@ -28,5 +28,10 @@ namespace FEEDYRE.Core.Repositories
         {
             return await context.Users.ToListAsync();
         }
+
+        public async Task<User?> Get(User user)
+        {
+            return await context.Users.FirstOrDefaultAsync(u => u.Email == user.Email && u.Password == user.Password);
+        }
     }
 }
