@@ -21,12 +21,14 @@ namespace FEEDYRE.Web.Controllers
         {
             var entity = user.ToEntity();
 
-            if (await userRepository.Get(entity) == null)
+            var userDb = await userRepository.Get(entity);
+
+            if (userDb == null)
             {
                 return BadRequest(error: JsonSerializer.Serialize("Username and/or Password are incorrect"));
             }
 
-            var token = CreateToken(entity);
+            var token = CreateToken(userDb);
 
             return Ok(token);
         }
@@ -34,22 +36,24 @@ namespace FEEDYRE.Web.Controllers
         private string CreateToken(User entity)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
+
             var jwtSecret = configuration["JwtSecret"]!;
             var key = Encoding.ASCII.GetBytes(jwtSecret);
 
-            var claims = new List<Claim>()
+            var claims = new List<Claim>
             {
-                new (ClaimTypes.Sid, entity.Id.ToString()),
-                new (ClaimTypes.Email, entity.Email)
+                new Claim(ClaimTypes.Sid, entity.Id.ToString()),
+                new Claim(ClaimTypes.Email, entity.Email)
             };
 
             var identity = new ClaimsIdentity(claims);
+
             var tokenDescriptor = new SecurityTokenDescriptor()
             {
                 Subject = identity,
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-        };
+            };
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
 

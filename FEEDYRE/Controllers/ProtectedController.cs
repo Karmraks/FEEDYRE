@@ -15,7 +15,7 @@ namespace FEEDYRE.Web.Controllers
         {
             var sIdClaim = User.Claims.FirstOrDefault(p => p.Type == ClaimTypes.Sid);
 
-            var id = sIdClaim.Value;
+            var id = sIdClaim!.Value;
 
 
             var data = $"THIS IS BIG SECRET FOR YOU MY User with ID : {id}";
